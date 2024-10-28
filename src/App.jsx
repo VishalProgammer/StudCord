@@ -44,7 +44,7 @@ function App() {
 
   return (
     <>
-    /*Navigation bar componant*/
+    {/*Navigation bar componant*/}
       <NavBar 
       home={toHome} 
       tasks={toTasks} 
