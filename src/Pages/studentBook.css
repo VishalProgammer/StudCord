@@ -1,0 +1,21 @@
+#sb-heading{
+    text-align: center;
+}
+
+#contentTab{
+    display: block;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
+    background-color: blanchedalmond;
+}
+
+#contentTab p{
+    height: 500px;
+    margin: auto;
+    padding-top:250px;
+    padding-bottom: 250px;
+    font-size: 20px;
+    color: red;
+}

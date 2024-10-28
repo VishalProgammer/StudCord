@@ -1,0 +1,26 @@
+#homeBody{
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    column-width: 100%;
+    margin: auto 0;
+  
+}
+#homeText{
+    margin: auto auto;
+    text-align: center;
+}
+
+#homeText h1{
+    font-size: 100px;
+}
+
+#homeText p{
+    font-size: 20px;
+}
+
+#home-banner img{
+    width: 100%;
+    height: 100%;
+    justify-content: right;
+}

@@ -1,0 +1,31 @@
+.navbar{
+    background-color: #E3DE76;
+    border-bottom: 2px black solid;
+}
+
+#logo{
+    font-size: x-large;
+    font-family: cursive, Brush Script MT;
+}
+
+#tabs{
+    margin: auto;
+    margin-left: 20px;
+    font-size: large;
+}
+
+#search-bar{
+    justify-content: center;
+    width: 50%;
+}
+
+
+
+#logo-bar{
+    margin: 0 10px;
+}
+
+#icon{
+    margin: 0 10px;
+    font-size: x-large;
+}
