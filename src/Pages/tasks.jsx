@@ -10,8 +10,8 @@ const AddTask = (props) =>{
     return(
         <>
         <form action="submit">
-            <input placeholder='task...' onChange={props.onChange}  value={props.value} type="text" />
-            <TaskAdderBtn/>
+            <input onChange={props.onChange}  value={props.value} type="text" />
+            <TaskAdderBtn onClick={props.onClick}/>
             <i id='icon' onClick={props.onClickX} className="bi bi-x"></i>
         </form>
         </>
@@ -97,16 +97,10 @@ const handleSubmit = async (e) => {
         <div id='tasksBody'>
             <h1 id='tb-heading'>Tasks list</h1>
             <div id='addTask'>
-                <AddBtn name='+ Add' onClick={addBtn} />
-            </div>
+                <AddBtn name='+ Add' onClick={addBtn} /></div>
             <div id='tb-contentTab'>
-
                {showTaskAdder?
-                <AddTask 
-                onClickX={handleClose} 
-                value={newTask} 
-                onChange={(a)=>setnewTask(a.target.value)} 
-                onClick={handleSubmit} />:
+                <AddTask onClickX={handleClose} value={newTask} onChange={(a)=>setnewTask(a.target.value)} onClick={handleSubmit} />:
                 null}
                 {taskData.map((a, index) =>{
                     return(

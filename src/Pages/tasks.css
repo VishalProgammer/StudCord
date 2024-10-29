@@ -47,14 +47,19 @@ p,#complete{
     display: inline-flex;
     font-size: 20px;
     justify-content: space-between;
-    width: 50%;
+ 
     padding-top:10px;
     padding-bottom: 0;
 }
+p{
+    width: 90%;
+}
 #complete{
+    width: 10%;
     justify-content: end;
     padding-right: 10px;
     color: green;
+
     font-size: 25px;
     padding: auto 0;
 }
