@@ -31,7 +31,7 @@
     }
 }
 
-@media (max-width: 100px) {
+@media (max-width: 768px) {
     #homeBody {
         grid-template-columns: repeat(1, 100%);
     }
