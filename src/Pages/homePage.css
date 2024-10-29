@@ -24,3 +24,9 @@
     height: 100%;
     justify-content: right;
 }
+
+@media (max-width: 600px) {
+    #homeBody {
+        grid-template-columns: repeat(1, 100%);
+    }
+}
