@@ -1,18 +1,18 @@
 import './tasks.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, addDoc, deleteDoc, doc, serverTimestamp, orderBy, query } from 'firebase/firestore';
-import { db } from '../components/firebaseConfig'
-import { AddBtn } from '../components/Buttons';
+import { AddBtn, TaskAdderBtn  } from '../components/Buttons';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
+import { db } from '../components/firebaseConfig';
 
 const AddTask = (props) =>{
     return(
         <>
         <form action="submit">
-            <input onChange={props.onChange}  value={props.value} type="text" />
-            <AddBtn onClick={props.onClick} name='Add task'/>
-            <i id='icon' onClick={props.onClickX} class="bi bi-x"></i>
+            <input placeholder='task...' onChange={props.onChange}  value={props.value} type="text" />
+            <TaskAdderBtn/>
+            <i id='icon' onClick={props.onClickX} className="bi bi-x"></i>
         </form>
         </>
     )
@@ -36,7 +36,7 @@ const Tasks =  (props)=>{
           };
       
           fetchData();
-        }, [db]);
+        }, []);
 
         //SAVE DATA SHORTCUT
         const saveData = async()=>{
@@ -97,21 +97,26 @@ const handleSubmit = async (e) => {
         <div id='tasksBody'>
             <h1 id='tb-heading'>Tasks list</h1>
             <div id='addTask'>
-                <AddBtn name='+ Add' onClick={addBtn} /></div>
+                <AddBtn name='+ Add' onClick={addBtn} />
+            </div>
             <div id='tb-contentTab'>
+
                {showTaskAdder?
-                <AddTask onClickX={handleClose} value={newTask} onChange={(a)=>setnewTask(a.target.value)} onClick={handleSubmit} />:
+                <AddTask 
+                onClickX={handleClose} 
+                value={newTask} 
+                onChange={(a)=>setnewTask(a.target.value)} 
+                onClick={handleSubmit} />:
                 null}
-                <p>debug input: {newTask}</p>
                 {taskData.map((a, index) =>{
                     return(
-                    <>
-                        <p className='task'>
+                    <div className='task'>
+                        <p>
                             {index + 1}. {a.task}
-                                <i onClick={() => handleDelete(a.id)} id='complete' class='bi bi-check2-square'></i> 
-                                <i onClick={() => handleDelete(a.id)} id='cancle' class='bi bi-x'></i>
                         </p>
-                    </>)
+                        <i onClick={() => handleDelete(a.id)} id='complete' class='bi bi-check2-square'></i> 
+                        <i onClick={() => handleDelete(a.id)} id='cancle' class='bi bi-x'></i>
+                    </div>)
                 })}
             </div>
         </div>

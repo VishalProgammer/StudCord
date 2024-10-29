@@ -3,19 +3,42 @@
 }
 
 #n-contentTab{
-    display: block;
-    width: 50%;
+    width: 60%;
+    justify-content: center;
     height: 100%;
     text-align: center;
     margin: 0 auto;
-    background-color: blanchedalmond;
 }
 
-#n-contentTab p{
-    height: 500px;
-    margin: auto;
-    padding-top:250px;
-    padding-bottom: 250px;
-    font-size: 20px;
-    color: red;
+#noteCard{
+    background-color: blueviolet;
+    
+}
+
+#addNote{
+    width: 60%;
+    margin: 0 auto;
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+#accordion{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    gap: 10px;
+    padding: 5px;
+}
+ #new-header{
+    width: 60%;
+ }
+
+ #noteContent{
+    text-align: left;
+ }
+
+#headerInput{
+    width: 30%;
+}
+#bodyInput{
+    width: 60%;
 }

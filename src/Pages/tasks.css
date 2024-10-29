@@ -9,8 +9,8 @@
     margin: 0 auto;
 }
 
-#tb-contentTab p{
-    background-color: aqua;
+#tb-contentTab .task{
+    background-color: rgba(130, 220, 255, 0.752);
     font-size: 15px;
     color: black;
     margin-top: 5px;
@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content:center;
-    font-size: 15px;
+    font-size: 20px;
     margin-top: 5px;
     background-color: gray;
     padding: 3px 0;
@@ -43,15 +43,26 @@
     background-color: red;
     cursor: pointer;
 }
-#complete{
-    margin-left: 10%;
-    margin-top: 10px;
+p,#complete{
+    display: inline-flex;
     font-size: 20px;
-    padding: 0px 0px;
+    justify-content: space-between;
+    width: 50%;
+    padding-top:10px;
+    padding-bottom: 0;
+}
+#complete{
+    justify-content: end;
+    padding-right: 10px;
     color: green;
+    font-size: 25px;
+    padding: auto 0;
 }
 #complete:hover{
     color: white;
-    padding: 0;
     cursor: pointer;
+}
+
+#contentBtns{
+    text-align: center;
 }
