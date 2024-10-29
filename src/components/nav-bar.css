@@ -36,3 +36,19 @@
     margin: 0 10px;
     font-size: x-large;
 }
+
+
+@media (max-width: 768px) {
+    #logo{
+        font-size: xx-large;
+    }
+    
+    #icon{
+    margin: 0 10px;
+    font-size: xx-large;
+    }
+    #tabs{
+        font-size: x-large;
+    }
+
+}
