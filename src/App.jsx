@@ -8,8 +8,8 @@ import { Notes } from './Pages/notes'
 
 
 function App() {
-  const [showHomePage, setshowHomePage] = useState(false);
-  const [showTasks, setshowTasks] = useState(true);
+  const [showHomePage, setshowHomePage] = useState(true);
+  const [showTasks, setshowTasks] = useState(false);
   const [showStudentBook, setshowStudentBook] = useState(false);
   const [showNotes, setshowNotes] = useState(false)
 
