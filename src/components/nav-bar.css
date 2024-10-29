@@ -1,3 +1,8 @@
+.navbar a{
+    text-decoration: none;
+    color: black;
+}
+
 .navbar{
     background-color: #E3DE76;
     border-bottom: 2px black solid;
@@ -12,8 +17,9 @@
     margin: auto;
     margin-left: 20px;
     font-size: large;
- 
+    text-decoration: none;
 }
+
 
 #search-bar{
     justify-content: center;

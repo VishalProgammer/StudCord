@@ -26,8 +26,8 @@ const NavBar = (props) =>{
                     <button className="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <div id='logo-bar'>
-                    <i id='icon' className="bi bi-github"></i>
-                    <i id='icon' className="bi bi-youtube"></i>
+                    <a href='https://github.com/VishalProgammer/StudCord' ><i id='icon' className="bi bi-github"></i></a>
+                    <a href="https://www.youtube.com/@ichihanaboy"><i id='icon' href='' className="bi bi-youtube"></i></a>
                 </div>
             </div>
         </Nav>
