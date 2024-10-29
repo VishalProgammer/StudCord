@@ -2,7 +2,7 @@
     text-align: center;
 }
 
-#contentTab{
+#n-contentTab{
     display: block;
     width: 50%;
     height: 100%;
@@ -11,7 +11,7 @@
     background-color: blanchedalmond;
 }
 
-#contentTab p{
+#n-contentTab p{
     height: 500px;
     margin: auto;
     padding-top:250px;
