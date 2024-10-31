@@ -12,6 +12,7 @@ function App() {
   const [showTasks, setshowTasks] = useState(false);
   const [showStudentBook, setshowStudentBook] = useState(false);
   const [showNotes, setshowNotes] = useState(false)
+  const [searchValue, setsearchValue] = useState('')
 
 
   const toHome = () =>{
@@ -49,8 +50,11 @@ function App() {
       home={toHome} 
       tasks={toTasks} 
       studentBook={toStudentBook} 
-      notes={toNotes} />
+      notes={toNotes}
+      onChangeSearch={(a)=>{setsearchValue(a.target.value)}}
+      searchValue={searchValue} />
 
+    <p>debug search bar: {searchValue}</p>
       <br />
       
       {showHomePage?  

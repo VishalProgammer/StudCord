@@ -2,7 +2,7 @@ import './notes.css'
 import { useState, useEffect } from 'react'
 import { db } from '../components/firebaseConfig';
 import { collection, updateDoc, getDocs, addDoc, deleteDoc, doc, serverTimestamp, orderBy, query } from 'firebase/firestore';
-import { AddBtn, NoteAdderBtn, NoteAdderCloseBtn, DelNoteBtn, EditNoteBtn } from '../components/Buttons';
+import { AddBtn, NoteAdderBtn, CancleBtn, DelBtn, EditBtn } from '../components/Buttons';
 import { toWords } from 'number-to-words';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -15,7 +15,7 @@ const NewNoteAdder = (props) => {
             <textarea id='bodyInput' value={props.noteValue} onChange={props.noteDataChange} placeholder='notes...' rows="4"></textarea>
             <br />
             <NoteAdderBtn onClick={props.addNoteFn} />
-            <NoteAdderCloseBtn onClick={props.onClickX} />
+            <CancleBtn onClick={props.onClickX} />
         </div>
     )
 }
@@ -29,7 +29,7 @@ const EditNote = (props) => {
             <textarea id='bodyInput' value={props.noteValue} onChange={props.noteDataChange} placeholder='notes...' rows="4"></textarea>
             <br />
             <NoteAdderBtn onClick={props.EditNote} />
-            <NoteAdderCloseBtn onClick={props.onClickX} />
+            <CancleBtn onClick={props.onClickX} />
         </div>
     )
 }
@@ -167,8 +167,8 @@ const Notes = () => {
                                         <br /><br />
                                         <hr />
                                         <span id='contentBtns'>
-                                            <DelNoteBtn id='contentBtns' onClick={() => handleDelete(note.id)} />
-                                            <EditNoteBtn id='contentBtns' onClick={() => {
+                                            <DelBtn id='contentBtns' onClick={() => handleDelete(note.id)} />
+                                            <EditBtn id='contentBtns' onClick={() => {
                                                 setShowEditTab(true);
                                                 setEditable(note);
                                                 setEditedHeader(note.header);

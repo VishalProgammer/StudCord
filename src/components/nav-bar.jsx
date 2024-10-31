@@ -22,12 +22,12 @@ const NavBar = (props) =>{
                     </li>
                 </ul>
                 <form id='search-bar' className="d-flex" role="search">
-                    <input id='search' className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="btn btn-outline-success" type="submit">Search</button>
+                    <input id='search' className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={props.searchValue} onChange={props.onChangeSearch}/>
+                    <button className="btn btn-outline-success" onClick={props.onClickSearch} type="submit">Search</button>
                 </form>
                 <div id='logo-bar'>
-                    <a href='https://github.com/VishalProgammer/StudCord' ><i id='icon' className="bi bi-github"></i></a>
-                    <a href="https://www.youtube.com/@ichihanaboy"><i id='icon' href='' className="bi bi-youtube"></i></a>
+                    <a href='https://github.com/VishalProgammer/StudCord' target="_blank" ><i id='icon' className="bi bi-github"></i></a>
+                    <a href="https://www.youtube.com/@ichihanaboy" target="_blank"><i id='icon' href='' className="bi bi-youtube"></i></a>
                 </div>
             </div>
         </Nav>

@@ -18,12 +18,13 @@ const AddTask = (props) =>{
     )
 }
 
-const Tasks =  (props)=>{
-    const [taskData, settaskData] = useState([])
-    const [showTaskAdder, setshowTaskAdder] = useState(false)
-    const [newTask, setnewTask] = useState('')
+const Tasks =  (props, searchValue)=>{
+  const [taskData, settaskData] = useState([])
+  const [showTaskAdder, setshowTaskAdder] = useState(false)
+  const [newTask, setnewTask] = useState('')
 
-        useEffect(() => {
+    //importing data
+    useEffect(() => {
             const fetchData = async () => {
                 const q = query(collection(db, 'tasks'), orderBy('timestamp', 'asc')); // or 'desc' for newest first
                 const querySnapshot = await getDocs(q);
@@ -38,47 +39,66 @@ const Tasks =  (props)=>{
           fetchData();
         }, []);
 
-        //SAVE DATA SHORTCUT
-        const saveData = async()=>{
+    //SAVE DATA SHORTCUT
+    const saveData = async()=>{
             const q = query(collection(db, 'tasks'), orderBy('timestamp', 'asc')); // or 'desc' for newest first
             const querySnapshot = await getDocs(q);
             const documents = querySnapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
               }));
+              console.log('TRYING: ',querySnapshot.docs);
+              
 
               settaskData(documents);
         }
 
-//Add more task:
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    try {
-      // Reference to the collection
-      const docRef = await addDoc(collection(db, 'tasks'), {
-        task:newTask,
-        timestamp: serverTimestamp()
-      });
+    //Search Tasks:
+    const searchDocuments = async (searchTerm) => {
+      const querySnapshot = await getDocs(collection(db, 'tasks'));
+      const matchedDocs = querySnapshot.docs
+          .map(doc => ({ id: doc.id, ...doc.data() }))
+          .filter(doc => 
+              Object.values(doc)
+                  .some(value => 
+                      typeof value === 'string' && value.includes({searchValue})
+                  )
+          );
+      console.log(matchedDocs);
+      return matchedDocs;
       
-      console.log("Document written with ID: ", docRef.id);
-      setnewTask('');
-      setshowTaskAdder(false);
-      saveData()
-    } 
-    
-    catch (error) {
-      console.error("Error adding document: ", error);
-    }
+      
   };
 
-  const addBtn = () =>{
-    setshowTaskAdder(true)
-  }
+    //Add more task:
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        try {
+          // Reference to the collection
+          const docRef = await addDoc(collection(db, 'tasks'), {
+            task:newTask,
+            timestamp: serverTimestamp()
+          });
+          
+          console.log("Document written with ID: ", docRef.id);
+          setnewTask('');
+          setshowTaskAdder(false);
+          saveData()
+        } 
+        
+        catch (error) {
+          console.error("Error adding document: ", error);
+        }
+      };
 
-  const handleClose = () =>{
-    setshowTaskAdder(false)
-  }
+      const addBtn = () =>{
+        setshowTaskAdder(true)
+      }
+
+      const handleClose = () =>{
+        setshowTaskAdder(false)
+      }
 
 
   //Delete Function:
@@ -100,7 +120,10 @@ const handleSubmit = async (e) => {
                 <AddBtn name='+ Add' onClick={addBtn} /></div>
             <div id='tb-contentTab'>
                {showTaskAdder?
-                <AddTask onClickX={handleClose} value={newTask} onChange={(a)=>setnewTask(a.target.value)} onClick={handleSubmit} />:
+                <AddTask 
+                onClickX={handleClose} 
+                value={newTask} 
+                onChange={(a)=>setnewTask(a.target.value)} onClick={handleSubmit} />:
                 null}
                 {taskData.map((a, index) =>{
                     return(

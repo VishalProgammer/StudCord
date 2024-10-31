@@ -6,16 +6,34 @@
     display: block;
     width: 50%;
     height: 100%;
-    text-align: center;
     margin: 0 auto;
-    background-color: blanchedalmond;
+    background-color: white;
 }
 
-#sb-contentTab p{
-    height: 500px;
-    margin: auto;
-    padding-top:250px;
-    padding-bottom: 250px;
-    font-size: 20px;
-    color: red;
+
+#addRecord{
+    width: 50%;
+    margin: 0 auto;
+    text-align: right;
+}
+
+#add-entry{
+    text-align: center;
+}
+#add-entry button{
+    margin-top: 10px;
+}
+
+#record-modify button{
+    font-size: small;
+    text-align: center;
+    padding-top: 0px;
+    height: 25px;
+}
+
+#edit-entry{
+    text-align: center;
+}
+#edit-entry button{
+    margin-top: 10px;
 }
