@@ -329,4 +329,156 @@ const StudentBook = (props) =>{
     )
 }
 
-export {StudentBook};
+const SearchStudentBook = (props) =>{
+    const [studentData, setstudentData] = useState([])
+    const [showRecordAdder, setshowRecordAdder] = useState(false)
+    const [showRecordEdit, setshowRecordEdit] = useState(false)
+    const [newName, setnewName] = useState('')
+    const [newGpa, setnewGpa] = useState('')
+    const [newStandard, setnewStandard] = useState('')
+    const [newGrade, setnewGrade] = useState('')
+    const [editable, setEditable] = useState(null);
+
+
+
+    //filtering yearly record data
+    useEffect(()=>{
+        const lowerCaseSearchTerm = props.searchValue.toLowerCase();
+        const searchDocuments = async (searchTerm) => {
+        const querySnapshot = await getDocs(collection(db, 'yearly record'));
+        const matchedDocs = querySnapshot.docs
+            .map(doc => ({ id: doc.id, ...doc.data() }))
+            .filter(doc => 
+                Object.values(doc)
+                    .some(value => 
+                        typeof value === 'string' && value.toLowerCase().includes(lowerCaseSearchTerm)
+                    )
+            )
+            setstudentData(matchedDocs);
+            console.log('results: ',matchedDocs);
+            
+          return matchedDocs}
+            searchDocuments()
+            
+    }, [props.searchValue])
+
+    //SAVE DATA SHORTCUT
+    const saveData = async()=>{
+        const q = query(collection(db, 'yearly record'), orderBy('timestamp', 'asc')); // or 'desc' for newest first
+        const querySnapshot = await getDocs(q);
+        const documents = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+
+          setstudentData(documents);
+    }
+
+    //Edit Record:
+    const handleUpdate = async (a) => {
+        a.preventDefault()
+        if (!editable) return;
+        try {
+            
+            await updateDoc(doc(db, 'yearly record', editable.id), {
+                name:newName,
+                gpa: newGpa,
+                standard: newStandard,
+                grade: newGrade
+            });
+            setshowRecordEdit(false);
+            saveData();
+        } catch (error) {
+            console.error("Error updating document: ", error);
+        }
+    };
+
+    //Delete Record:
+    const handleDelete = async (id) => {
+        try {
+          await deleteDoc(doc(db, 'yearly record', id));
+          console.log("Document deleted successfully!");
+          saveData()
+        } catch (error) {
+          console.error("Error deleting document: ", error);
+        }
+      };
+
+    return(
+        <div id='studentBookBody'>
+
+            
+
+            <br />
+
+            {/*Editing Records*/}
+            {showRecordEdit?
+            (<div id='edit-entry'>
+                <EditRecord
+                onChangeName={(a)=>{setnewName(a.target.value)}}
+                onChangeGpa={(a)=>setnewGpa(a.target.value)}
+                onChangeStandard={(a)=>setnewStandard(a.target.value)}
+                onChangeGrade={(a)=>setnewGrade(a.target.value)}
+                valueName={newName}
+                valueGpa={newGpa}
+                valueStandard={newStandard}
+                valueGrade={newGrade}
+                onClickEdit={handleUpdate}
+                onClickX={()=>{
+                    setnewName('');
+                    setnewGpa('');
+                    setnewStandard('');
+                    setnewGrade('');
+                }}
+                
+                onClickCancle={()=>{setshowRecordEdit(false)}}
+                />
+            </div>):
+            null}
+
+            {/*Displaying Records*/}
+            <div id='sb-contentTab'>
+                <h3 id='sb-searchHeading'>Result Results:</h3>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">GPA</th>
+                        <th scope="col">Standard</th>
+                        <th scope="col">Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {studentData.map((a,  index) =>
+                        {return <tr>
+                            <th>{index+1}</th>
+                            <td>{a.name}</td>
+                            <td>{a.gpa}</td>
+                            <td>{a.standard}</td>
+                            <td>{a.grade}</td>
+                            <td id='record-modify'>
+                                <EditBtn
+                                onClick={()=>{
+                                    setEditable(a);
+                                    setshowRecordEdit(true);
+                                    setshowRecordAdder(false);
+                                    setnewName(a.name);
+                                    setnewGpa(a.gpa);
+                                    setnewGrade(a.grade);
+                                    setnewStandard(a.standard);
+                                }}
+                                />
+                                <DelBtn
+                                onClick={()=>{handleDelete(a.id)}}
+                                />
+                            </td>
+                        </tr>})}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    )
+}
+
+export {StudentBook, SearchStudentBook};

@@ -25,6 +25,11 @@
     justify-content: right;
 }
 
+#home-footer{
+    text-align: center;
+    color: red;
+}
+
 @media (max-width: 600px) {
     #homeBody {
         grid-template-columns: repeat(1, 100%);
