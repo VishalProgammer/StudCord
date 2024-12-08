@@ -6,6 +6,7 @@ import { AddBtn, TaskAdderBtn  } from '../components/Buttons';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { db } from '../components/firebaseConfig';
 
+//Element to add more tasks:
 const AddTask = (props) =>{
     return(
         <>
@@ -19,7 +20,7 @@ const AddTask = (props) =>{
 }
 
 
-//Search Tasks:
+//Element to show searched Tasks:
 const SearchTasks =  (props)=>{
   const [taskData, settaskData] = useState([])
   const [doneTaskData, setdoneTaskData] = useState([])
@@ -77,7 +78,7 @@ const SearchTasks =  (props)=>{
       );}
 
 
-    //Movinv completed tasks to saparate collection
+    //Moving completed tasks to saparate collection
     const moveDocument = async (docId) => {
         try {
             const docRef = doc(db, 'tasks', docId);
@@ -146,7 +147,7 @@ const SearchTasks =  (props)=>{
             
 
             <div id='tb-contentTab'>
-              <h3>Result Results:</h3>
+              <h3>Search Results:</h3>
                 {taskData.map((a, index) =>{
                     return(
                     <div className='task'>
@@ -178,6 +179,7 @@ const SearchTasks =  (props)=>{
     )
 }
 
+//Element showing all Tasks:
 const Tasks =  (props)=>{
   const [taskData, settaskData] = useState([])
   const [doneTaskData, setdoneTaskData] = useState([])
@@ -272,11 +274,12 @@ const Tasks =  (props)=>{
         }
       };
 
-      const addBtn = () =>{
+    //function of add button
+    const addBtn = () =>{
         setshowTaskAdder(true)
       }
-
-      const handleClose = () =>{
+    //closing the AddTask Element
+    const handleClose = () =>{
         setshowTaskAdder(false)
         setnewTask('')
       }

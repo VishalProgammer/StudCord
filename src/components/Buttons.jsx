@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button } from 'react-bootstrap'
 
 //Add btn
 export const AddBtn =  (props) =>{
@@ -28,26 +27,21 @@ export const EditBtn = (props) =>{
 }
 
 
+//Button for Tasks page:
 export const TaskAdderBtn = (props) =>{
     return(
         <button type="button, submit" className="btn btn-success"  onClick={props.onClick}>add task</button>
     )
 }
 
+//Button for Notes page:
 export const NoteAdderBtn = (props) =>{
     return(
         <button type="button, submit" className="btn btn-success"  onClick={props.onClick}>add note</button>
     )
 }
 
-
-
-
-
-
-
 //Buttons for Student Record:
-
 export const RecordAdderBtn = (props) =>{
     return(
         <button type="button, submit" className="btn btn-success"  onClick={props.onClick}>add record</button>

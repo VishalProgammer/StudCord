@@ -6,6 +6,7 @@ import { AddBtn, NoteAdderBtn, CancleBtn, DelBtn, EditBtn } from '../components/
 import { toWords } from 'number-to-words';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+//element to add new note
 const NewNoteAdder = (props) => {
     return (
         <div>
@@ -20,6 +21,7 @@ const NewNoteAdder = (props) => {
     )
 }
 
+//element to edit existing note
 const EditNote = (props) => {
     return (
         <div>
@@ -34,6 +36,7 @@ const EditNote = (props) => {
     )
 }
 
+//element showing all notes
 const Notes = () => {
     const [notesData, setNotesData] = useState([]);
     const [showNotesAdder, setShowNotesAdder] = useState(false);
@@ -117,7 +120,7 @@ const Notes = () => {
                         addNoteFn={handleSubmit}
                         headerChange={(e) => setNewNoteHeader(e.target.value)}
                         onClickX={() => {
-                            setShowNotesAdder(false)
+                            setShowNotesAdder(false);
                             setNewNote('');
                             setNewNoteHeader('');}}
                         Xbtn={() => {
@@ -181,7 +184,7 @@ const Notes = () => {
                                     </div>
                                 </div>
                             </div>
-                        );
+                        )
                     })}
                 </div>
             </div>
@@ -189,6 +192,7 @@ const Notes = () => {
     )
 }
 
+//element to show notes that are filtered by search
 const SearchNotes = (props) => {
     const [notesData, setNotesData] = useState([]);
     const [showNotesAdder, setShowNotesAdder] = useState(false);

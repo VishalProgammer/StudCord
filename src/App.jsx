@@ -18,6 +18,7 @@ function App() {
   const [searchValue, setsearchValue] = useState('');
 
 
+  //on clicking Home button
   const toHome = () =>{
     setshowHomePage(true);
     setshowStudentBook(false);
@@ -28,6 +29,7 @@ function App() {
     setshowNotesSearch(false);
   }
 
+  //on clicking Tasks button
   const toTasks = () =>{
     setshowHomePage(false);
     setshowStudentBook(false);
@@ -38,6 +40,7 @@ function App() {
     setshowNotesSearch(false);
   }
 
+  //on clicking StudentBook button
   const toStudentBook = () =>{
     setshowHomePage(false);
     setshowStudentBook(true);
@@ -48,6 +51,7 @@ function App() {
     setshowNotesSearch(false);
   }
 
+  //on clicking Notes button
   const toNotes = () =>{
     setshowHomePage(false);
     setshowStudentBook(false);
@@ -58,6 +62,7 @@ function App() {
     setshowNotesSearch(false);
   }
 
+  //on clicking search button
   const searchBtn = (a) =>{
     a.preventDefault()
     if(showTasks){
@@ -77,6 +82,7 @@ function App() {
     }
   }
 
+  //returning all layout of site
   return (
     <>
     {/*Navigation bar componant*/}

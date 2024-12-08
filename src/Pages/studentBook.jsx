@@ -5,7 +5,7 @@ import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc, serverTimestamp
 import { AddBtn, CancleBtn, DelBtn, EditBtn, RecordAdderBtn, RecordEditBtn  } from '../components/Buttons';
 import { db } from '../components/firebaseConfig';
 
-//Element to add new entries
+//Element to add new student's entries
 const AddRecord = (props) =>{
 
     const grades = [
@@ -61,7 +61,7 @@ const AddRecord = (props) =>{
     )
 }
 
-//Element to edit record
+//Element to edit a student's record
 const EditRecord = (props) =>{
 
     const grades = [
@@ -117,6 +117,7 @@ const EditRecord = (props) =>{
     )
 }
 
+//Element to show all records
 const StudentBook = (props) =>{
     const [studentData, setstudentData] = useState([])
     const [showRecordAdder, setshowRecordAdder] = useState(false)
@@ -329,6 +330,7 @@ const StudentBook = (props) =>{
     )
 }
 
+//Element to show records that are filtered by the search
 const SearchStudentBook = (props) =>{
     const [studentData, setstudentData] = useState([])
     const [showRecordAdder, setshowRecordAdder] = useState(false)
@@ -405,7 +407,7 @@ const SearchStudentBook = (props) =>{
       };
 
     return(
-        <div id='studentBookBody'>
+        <div id='StudentBookBody'>
 
             
 
@@ -438,7 +440,7 @@ const SearchStudentBook = (props) =>{
 
             {/*Displaying Records*/}
             <div id='sb-contentTab'>
-                <h3 id='sb-searchHeading'>Result Results:</h3>
+                <h3 id='sb-searchHeading'>Search Results:</h3>
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
